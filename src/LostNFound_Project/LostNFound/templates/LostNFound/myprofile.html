@@ -1,0 +1,185 @@
+<html>
+<head>
+	<title>Profile</title>
+	<meta charset="utf-8">
+	<script src="{{ STATIC_URL }}js/jquery-1-9-1.min.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery-validate.js"></script>
+	<script src="{{ STATIC_URL }}js/additional-methods.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/form.css">
+
+	<script>
+		function showDiv()
+		{
+			var div = document.getElementById("edit_profile_div");
+			div.style.display='block';
+			div.style.visibility='visible';
+			div = document.getElementById("view_profile_div");
+			div.style.visibility='hidden';
+			div.style.display='none';
+		}
+
+		function undoHide()
+		{
+			var div = document.getElementById("view_profile_div");
+			div.style.display='block';
+			div.style.visibility='visible';
+			div = document.getElementById("edit_profile_div");
+			div.style.visibility='hidden';
+			div.style.display='none';
+			div = document.getElementById("newpassdiv");
+			div.style.visibility='hidden';
+		}
+	</script>
+
+</head>
+
+<body>
+	<div class="header_div">
+		<div class="title_div">
+			<h1 align="center" class="title1">LOST and FOUND portal</h1>
+			<h2 align = "center" class="title">Welcome, <p style="display:inline" id="get_name"> {{ username }}</p> </h2>
+		</div>
+		<div class="nav_menu">
+			<section class="welcome">&nbsp;</section>
+			<p align=right>	
+				<a href="/lnf/" target="_self"><button class="menu_button">Home</button></a>&nbsp;&nbsp;&nbsp;
+				<a href="logout/" target="_self"><button class="menu_button">Logout</button></a>&nbsp;&nbsp;&nbsp;
+			</p>
+		</div>
+	</div>
+
+	<div class="main_div">
+
+	<p  align=center id="message">{{msg}}</p>
+
+	<div id="view_profile_div" name="view_profile_div" class="form_div">
+
+
+			<table width=70% align=center>
+				<tr>
+					<td width=35%></td>
+					<td><input id="edit_button" type="button" class="submit" value="Edit.." onclick="javascript: showDiv();"/></td>
+
+				</tr>
+				<tr><td width=35%>&nbsp;</td><td>&nbsp;</td></tr>
+
+				<tr>
+					<td width=35% align=right>Email ID : </td>
+					<td> <p id="get_email"> {{ object.email }} </p> </td>
+				</tr>
+				<tr>
+					<td width=35% align=right>Name : </td>
+					<td> <p id="get_username"> {{ object.userDetails.name }} </p></td>
+				</tr>
+				<tr>
+					<td width=35% align=right>Address : </td>
+					<td> <p id="get_address"> {{ object.userDetails.address }}</p></td>
+				</tr>
+
+			</table>
+
+	</div>
+
+
+	<div id="edit_profile_div" name="edit_profile_div" style="display:none;visibility:hidden">
+
+			<br>
+			<form id="edit_profile_form" class="form_div" name="edit_profile_form" action="." method="POST">
+			{% csrf_token %}
+			<table width=100% align=center >
+				<tr>
+					<td width=35%>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td width=35% align=right>Email ID : </td>
+					<td> {{ object.email }}</td>
+				</tr>
+				<tr>
+					<td width=35% align=right>Name : </td>
+					<td><input class="txtbx" type="text" id="username" value="{{ object.userDetails.name }}" name="username" maxlength="64"></td>
+				</tr>
+				<tr>
+					<td width=35% align=right>Address : </td>
+					<td> <input class="txtbx" type="text" id="address" value="{{ object.userDetails.address }}"  name="address" maxlength="256"> </td>
+				</tr>
+
+				<tr>
+					<td width=35% align=right>Old Password :</td>
+					<td> <input class="txtbx" type="password" id="oldpword"  name="oldpword" maxlength="16" /> </td>
+				</tr>
+				<tr>
+					<td width=35% align=right>New Password :</td>
+					<td> <input class="txtbx" type="password" id="pword"  name="pword"  maxlength="16"> </td>
+				</tr>
+
+				<tr>
+					<td width=35% align=right>Confirm Password : </td>
+					<td> <input class="txtbx" type="password" id="confpword"  name="confpword" maxlength="16"> </td>
+				</tr>				
+				<tr>
+					<td width=35%></td>
+					<td>
+						<input type="submit" name="submit" class="submit" value="Apply">
+						<input type="button" value="Cancel" class="submit" onclick="javascript: undoHide();"/>
+					</td>
+				</tr>
+			</table>
+
+			<center>&nbsp;&nbsp;&nbsp;All the fields in this form are mandatory</center>
+			</form>
+	</div>
+
+
+	<script>				//dont be oversmart and cut-paste this code to the head section!
+		jQuery.validator.setDefaults({
+		  success: "valid"
+		});
+
+		var x = document.getElementById("pword");
+		var x1 = document.getElementById("oldpword");
+		var x2 = document.getElementById("confpword");
+				if (x.value === "" && x1.value === "" && x2.value === "") {	
+					$( "#edit_profile_form" ).validate({
+					rules: {
+						username:{required:true},
+						address: {required: true}
+					},
+					messages: {
+						username: "Please enter your name",
+						address: "Please enter your address"
+				        }
+					});
+					
+				}
+				else {
+					$( "#edit_profile_form" ).validate({
+					rules: {
+						username:{required:true},
+						oldpword:{required:true, minlength:5},
+						pword: {required:true, minlength:5},
+						confpword: {required:true, minlength:5, equalTo: "#pword"},
+						address: {required: true}
+					},
+					messages: {
+						username: "Please enter your name",
+						oldpword: "Password should contain 5-16 characters",
+						address: "Please enter your address",
+						pword: "Password should contain 5-16 characters",
+						confpword: "New Passwords do not match"
+				        }
+					});
+									}
+
+		
+	</script>
+
+</div>
+	
+	<div class="footer_div">
+	<center>Created and maintained by : Rahul Mittal, Kaushal Yagnik, Deepak Chawla, Gaurav Mittal, Riya Garg </center>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>Register</title>
+
+<script type="/text/javascript">
+document.getElementById("").submit();
+</script>
+
+</head>
+
+<body>
+	<form name="registration" action="regcheck/" method="POST">
+		<br><br>
+		{% csrf_token %}
+		Name :
+		<input type = "text" name = "name"><br>
+
+		Email ID : {{email}}
+		<input type = 'hidden' name='email' value = {{email}}> <br>
+
+		Address/Room No :
+		<input type = "text" name = "address"><br>
+
+		<input type="submit" name="submit" value="Submit">
+
+	</form>
+
+
+</body>
+
+</html>

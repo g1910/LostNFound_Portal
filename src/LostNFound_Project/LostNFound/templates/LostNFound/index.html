@@ -1,0 +1,143 @@
+<html>
+<head>
+	<title>Login - LOST and FOUND</title>
+	<meta charset="utf-8">
+	<script src="{{ STATIC_URL }}js/jquery-1-9-1.min.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery-validate.js"></script>
+	<script src="{{ STATIC_URL }}js/additional-methods.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/form.css">
+
+	<script>
+		function showDiv()
+		{
+		var div = document.getElementById("registration_form_div");
+		div.style.display='block';
+		div.style.visibility='visible';
+		div = document.getElementById("login_form_div");
+		div.style.visibility='hidden';
+		div.style.display='none';
+		}
+
+		function undoHide()
+		{
+		var div = document.getElementById("login_form_div");
+		div.style.display='block';
+		div.style.visibility='visible';
+		div = document.getElementById("registration_form_div");
+		div.style.visibility='hidden';
+		div.style.display='none';
+
+		var para = document.getElementById("get_email");
+		var para_new = document.getElementById("get_email_edit");
+		para_new.innerHTML = para.innerHTML;
+
+		para = document.getElementById("get_name");
+		para_new = document.getElementById("username");
+		para_new.value = para.innerHTML;
+
+		para = document.getElementById("get_address");
+		para_new = document.getElementById("address");
+		para_new.value = para.innerHTML;
+
+		}
+
+	</script>
+</head>
+
+<body>
+	<div class="header_div">
+		<div class="title_div">
+			<h1 align="center" class="title1">LOST and FOUND portal</h1>
+			<h2 align = "center" class="title">Login to continue</h2>
+		</div>
+	</div>
+
+	<div class="main_div">
+		<p id="message">{% if msg %}
+					{{ msg }}
+				{% endif %}</p>
+
+		<div id="login_form_div" class="form_div">
+			<form name="login_form" action="login/" method="POST" id="login_form">
+			{% csrf_token %}
+			<table width=50% align=center>
+				<tr>
+					<td width=20% align=right><label for="email">Email ID :</label></td>
+					<td><input type = "text" id="email" name="email" maxlength="128"></td>
+				</tr>
+				<tr>
+					<td width=20% align=right><label for="pword">Password :</label></td>
+					<td> <input type = "password" id="pword"  name="pword" maxlength="16"> </td>
+				</tr>
+				<tr>
+					<td  width=20% align=center></td>
+					<td align=left><input type="submit" name="Submit" class="submit" value="LOGIN"></td>
+				</tr>
+			</table>
+
+			</form>
+			<center>Are you a new user?
+			<button id="register_button" name="register_button" class="menu_button" onclick="showDiv()" >REGISTER</button>your email here... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center><br>
+		</div>
+
+		<div style="display:none;visibility:hidden;" id="registration_form_div" name="registration_form_div">
+			<form name="registration_form" id="registration_form" action="register/" method="POST" class="form_div">
+				{% csrf_token %}
+				<table width=50% align=center>
+					<tr>
+						<td width=20% align=right><label for="email">Email ID :</label></td>
+						<td><input class="txtbx" type="text" id="email" name="email" maxlength="64"></td>
+					</tr>
+
+					<tr>
+						<td>&nbsp; </td>
+						<td>&nbsp;</td>
+					</tr>
+
+					<tr>
+						<td  width=20% align=right></td>
+						<td align=left>
+							<input type="submit" name="register" id="register" value="Get Registered!" class="submit" />
+							<input type="button" id="cancel_button" name="cancel_button" value="Cancel" class="submit" onclick="undoHide()" /> (Go back to Login)
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+		<script>				//Don't be oversmart and cut-paste this to the head section!
+			jQuery.validator.setDefaults({
+			  success: "valid"
+			});
+			$( "#login_form" ).validate({
+				rules: {
+					email: {required: true, email: true},
+					pword: {required:true, minlength:5},
+					
+				},
+				messages: {
+					email: "Please enter a valid email id",
+					pword: "Password should contain 5-16 characters",
+			        }
+			});
+			$( "#registration_form" ).validate({
+				rules: {
+					email: {required: true, email: true},
+				},
+				messages: {
+					email: "Please enter a valid email id",
+			        }
+			});
+
+		</script>
+
+	</div>
+	
+	<div class="footer_div">
+	<center>Created and maintained by : Rahul Mittal, Kaushal Yagnik, Deepak Chawla, Gaurav Mittal, Riya Garg</center>
+	</div>
+
+
+</body>
+
+</html>

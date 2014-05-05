@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>Home</title>
+	<meta charset="utf-8">
+	<script src="{{ STATIC_URL }}js/jquery-1-9-1.min.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery-validate.js"></script>
+	<script src="{{ STATIC_URL }}js/additional-methods.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/form.css">
+</head>
+
+<body>
+	<div class="header_div">
+		<div class="title_div">
+			<h1 align="center" class="title1">LOST and FOUND portal</h1>
+		</div>
+		<div class="nav_menu">
+			<section class="welcome">Welcome, {{ username }}</section>
+			<p align=right>
+				<a href="profile/" target="_self"><button class="menu_button">My Profile </button></a>&nbsp;&nbsp;&nbsp;
+				<a href="logout/" target="_self"><button class="menu_button">Logout</button></a>&nbsp;&nbsp;&nbsp;
+			</p>
+		</div>
+	</div>
+
+	<div class="main_div">
+
+		<p  align=center id="message"></p>
+
+		<br><br>
+
+		<table width=100%>
+			<tr align=center>
+				<td><a href="lost/" target="_self"><button class="home_button big button">My lost items...</button> </a></td>
+				<td><a href="lost_something/" target="_self"><button class="home_button  big button">I have lost something...</button> </a></td>
+				<td><a href="search/lost/" target="_self"><button class="home_button  big button">Browse all lost...</button> </a></td>
+			</tr>
+
+			<tr height=10%>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+
+			<tr align=center>
+				<td><a href="found/" target="_self"><button class="home_button big button">My found items...</button> </a></td>
+				<td><a href="found_something/" target="_self"><button class="home_button big button">I have found something...</button> </a></td>
+				<td><a href="search/found/" target="_self"><button class="home_button big button">Browse all found...</button> </a></td>
+			</tr>
+
+		</table>
+			
+			<br>
+			<br>
+	
+	</div>
+	
+	<div class="footer_div">
+		<center>Created and maintained by : Rahul Mittal, Kaushal Yagnik, Deepak Chawla, Gaurav Mittal, Riya Garg </center>
+	</div>
+
+</body>
+
+</html>

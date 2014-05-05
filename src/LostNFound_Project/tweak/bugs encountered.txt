@@ -1,0 +1,2 @@
+haystack caching problem returning duplicates in the list
+>we have to add code to remove duplicates (seriously annoying) - credit goes

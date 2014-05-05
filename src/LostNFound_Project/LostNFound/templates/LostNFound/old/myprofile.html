@@ -1,0 +1,214 @@
+<html>
+<head>
+<title>Profile</title>
+<meta charset="utf-8">
+<script src="{{ STATIC_URL }}js/jquery-1-9-1.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery-validate.js"></script>
+<script src="{{ STATIC_URL }}js/additional-methods.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/form.css">
+
+<script>
+		function showDiv()
+		{
+			var div = document.getElementById("edit_profile_div");
+			div.style.display='block';
+			div.style.visibility='visible';
+			div = document.getElementById("view_profile_div");
+			div.style.visibility='hidden';
+			div.style.display='none';
+
+			var para = document.getElementById("get_email");
+			var para_new = document.getElementById("get_email_edit");
+			para_new.innerHTML = para.innerHTML;
+
+			para = document.getElementById("get_username");
+			para_new = document.getElementById("username");
+			para_new.value = para.innerHTML;
+
+			para = document.getElementById("get_address");
+			para_new = document.getElementById("address");
+			para_new.value = para.innerHTML;
+
+		}
+
+		function showNewPass()
+		{
+			var div = document.getElementById("newpassdiv");
+			div.style.visibility='visible';
+		}
+
+		function undoHide()
+		{
+			var div = document.getElementById("view_profile_div");
+			div.style.display='block';
+			div.style.visibility='visible';
+			div = document.getElementById("edit_profile_div");
+			div.style.visibility='hidden';
+			div.style.display='none';
+			div = document.getElementById("newpassdiv");
+			div.style.visibility='hidden';
+
+			var para = document.getElementById("oldpword");
+			para.value= "";
+			para = document.getElementById("pword");
+			para.value= "";
+			para = document.getElementById("confpword");
+			para.value = "";
+		}
+</script>
+
+</head>
+
+<body>
+
+<h1 align = "center" class="title">Welcome, <p style="display:inline" id="get_name"> test name</p> </h1>
+
+<p align=right>
+	<a href="../" target="_self"><button class="menu_button">Home</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="../logout/" target="_self"><button class="menu_button">Logout</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+
+<p  align=center id="message">test message</p>
+
+<div id="view_profile_div" name="view_profile_div">
+
+
+		<table width=50% align=center>
+			<tr>
+				<td></td>
+				<td><input id="edit_button" type="button" class="menu_button" value="Edit.." onclick="javascript: showDiv();"/></td>
+
+			</tr>
+
+			<tr>
+				<td width=25% align=right>Email ID : </td>
+				<td> <p id="get_email"> {{ object.email }}</p> </td>
+			</tr>
+			<tr>
+				<td width=25% align=right>Name : </td>
+				<td> <p id="get_username"> {{ object.userDetails.name }}</p></td>
+			</tr>
+			<tr>
+				<td width=25% align=right>Address : </td>
+				<td> <p id="get_address"> {{ object.userDetails.address }}</p></td>
+			</tr>
+
+		</table>
+
+</div>
+
+
+<div id="edit_profile_div" name="edit_profile_div" style="display:none;visibility:hidden">
+
+			<br>
+			<form id="edit_profile_form" name="edit_profile_form" action="." method="POST">
+			{% csrf_token %}
+			<table width=50% align=center>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td width=25% align=right>Email ID : </td>
+					<td> <p id="get_email_edit"></p> </td>
+				</tr>
+				<tr>
+					<td width=25% align=right><label for="username">Name :</label>  </td>
+					<td><input type="text" id="username" name="username" maxlength="64"></td>
+				</tr>
+				<tr>
+					<td width=25% align=right><label for="address">Address :</label> </td>
+					<td> <input type="text" id="address"  name="address" maxlength="256"> </td>
+				</tr>
+
+				<tr>
+					<td width=25% align=right><label for="pword">Old Password :</label></td>
+					<td> <input type="password" id="oldpword"  name="oldpword" maxlength="16" onchange="javascript:showNewPass()"> </td>
+				</tr>
+
+				
+			</table>
+			<div id="newpassdiv" name="newpassdiv" style="display:block;visibility:visible">
+			<table width=50% align=center>
+				<tr>
+					<td width=25% align=right><label for="pword">New Password :</label></td>
+					<td> <input type="password" id="pword"  name="pword"  maxlength="16"> </td>
+				</tr>
+
+				<tr>
+					<td width=25% align=right><label for="confpword">Confirm Password :</label> </td>
+					<td> <input type="password" id="confpword"  name="confpword" maxlength="16"> </td>
+				</tr>				
+			</table>
+			</div>
+			<table width=50% align=center>
+				<tr>
+					<td></td>
+					<td>
+						<input type="submit" name="submit" class="submit" value="Apply Changes">
+						<input type="button" value="Cancel" class="submit" onclick="javascript: undoHide();"/>
+					</td>
+				</tr>
+			</table>
+
+			<center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All the fields in this form are mandatory</center>
+			</form>
+			
+			
+
+	</div>
+
+
+<script>				//dont be oversmart and cut-paste this code to the head section!
+		jQuery.validator.setDefaults({
+		  success: "valid"
+		});
+
+		var x = document.getElementById("pword");
+//		document.getElementById("edit_profile_form").onsubmit({
+				if (x.value === "") {	
+					$( "#edit_profile_form" ).validate({
+					rules: {
+						username:{required:true},
+						oldpword:{required:true, minlength:5},
+						address: {required: true}
+					},
+					messages: {
+						username: "Please enter your name",
+						oldpword: "Password should contain 5-16 characters",
+						address: "Please enter your address"
+				        }
+					});
+					
+				}
+				else {
+					$( "#edit_profile_form" ).validate({
+					rules: {
+						username:{required:true},
+						oldpword:{required:true, minlength:5},
+						pword: {required:true, minlength:5},
+						confpword: {required:true, minlength:5, equalTo: "#pword"},
+						address: {required: true}
+					},
+					messages: {
+						username: "Please enter your name",
+						oldpword: "Password should contain 5-16 characters",
+						address: "Please enter your address",
+						pword: "Password should contain 5-16 characters",
+						confpword: "New Passwords do not match"
+				        }
+					});
+									}
+
+			
+//		});
+
+//		}
+		
+	</script>
+
+
+
+</body>
+
+</html>

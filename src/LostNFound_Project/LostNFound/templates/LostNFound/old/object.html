@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>{{ object.itemName }}</title>
+</head>
+<body>
+	<h3>{{ type.capitalize }} Item: {{ object.itemName }}</h3>
+	{% if similarlist %}
+		[<a href='edit/'>edit</a>] [<a href='delete/'>delete</a>]
+	{% endif %}
+	<p>{{ msg }}<p>
+	<br>
+	by 	{% if anonymous %}
+			{{ object.user.userDetails.name }}
+		{% else %}
+			Anonymous
+		{% endif %}
+	<br>
+	{% if object.image %}
+		<img src=../..{{ object.image.url }} height=200 />
+	{% else %}
+		<img src=..{{ MEDIA_URL }}pic/default.jpg />
+	{% endif %}
+	Description: {{ object.desc }}<br>
+	Tag: {% for tag in object.tag.all %}
+		{{ tag.tag }}
+	{% endfor %}<br><br>
+	{% if similarlist %}
+		Similar {{ type }} items:<br>
+		{% for result in items %}
+		  <p>
+		    <a href=../../{{ othertype }}/{{result.oid}}/>{{ result.title }}</a><br>
+		    {{ result.desc }}
+		  </p>
+		  {% empty %}
+		  <p>No matching items found.</p>
+		  {% endfor %}
+	{% else %}
+		<h5>Send Email</h5>
+		<form action='email/' method='POST'>
+			{% csrf_token %}
+			Content: <textarea name='content' id='content'></textarea><br>
+			<input type='submit' name='Submit'>
+		</form>
+	{% endif %}
+</body>
+</html>

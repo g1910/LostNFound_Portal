@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title>Search</title>
+</head>
+<body>
+<h4>Items {{ type }} by me</h4>
+  <h3>Results</h3>
+  {% if object %}
+	  {% for result in object %}
+	  <p>
+	    <a href=../{{ type }}/{{result.id}}>{{ result.itemName }}</a> [<a href='../{{ type }}/{{result.id}}/edit/'>edit</a>] [<a href='../{{ type }}/{{result.id}}/delete/'>delete</a>]<br>
+	    {{ result.desc }}
+	  </p>
+	  {% empty %}
+	  <p>No Items found.</p>
+	  {% endfor %}
+  {% endif %}
+</form>
+</body>
+</html>

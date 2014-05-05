@@ -1,0 +1,10 @@
+from LostNFound.models import Tags, Categories, UserDetails, User, Lost, Found
+
+a = open('./EmailList','rw+')
+for em in a.readlines():
+	em=em.strip()
+	if not User.objects.filter(email=em):
+		u=User(email=em)
+		u.save()
+	print em
+

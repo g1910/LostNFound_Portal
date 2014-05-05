@@ -1,0 +1,6 @@
+{{ object.itemName }}
+{% for tag in object.tag.all %}
+	{{ tag.tag }}
+{% endfor %}
+{{ object.desc }}
+{{ object.location }}

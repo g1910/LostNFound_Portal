@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Search</title>
+</head>
+<body>
+<h2>Search {{ type.capitalize }}</h2>
+<form method="get" action=".">
+ 	<input type='text' name='searchquery'><br>
+ 	Category: <select name='category'>
+ 		<option value="all" selected="selected">All</option>
+		{% for category in categories %}
+		<option value="{{category.category}}" >{{ category.category }}</option>
+		{% endfor %}
+	</select>
+	Order By<select name='order'>
+ 		<option value="relevance" selected="selected">Relevance</option>
+		<option value="latest" >latest</option>
+		<option value="name" >name</option>
+	</select><br>
+        <input type="submit" value="Search">
+    
+  {% if object %}
+  <h3>Results</h3>
+	  {% for result in object %}
+	  <p>
+	    <a href=../../{{ type }}/{{result.oid}}/>{{ result.title }}</a><br>
+	    {{ result.desc }}
+	  </p>
+	  {% empty %}
+	  <p>No results found.</p>
+	  {% endfor %}
+  {% endif %}
+</form>
+</body>
+</html>

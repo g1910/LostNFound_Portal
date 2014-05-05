@@ -1,0 +1,31 @@
+from django.conf.urls import patterns, url
+from django.conf import settings
+from LostNFound import views
+
+urlpatterns = patterns('',
+    url(r'^$', views.index, name='index'),
+    url(r'^login/$', views.login, name='login'),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^register/regcheck/$', views.regcheck, name='regcheck'),
+    url(r'^found_something/$', views.found_something, name='found_something'),
+    url(r'^lost_something/$', views.lost_something, name='lost_something'),
+    url(r'^lost_something/lostform/$', views.lostform, name='lostform'),
+    url(r'^found_something/foundform/$', views.foundform, name='foundform'),
+    url(r'^search/(?P<name>lost)/$', views.search, name='searchlost'),
+    url(r'^search/(?P<name>found)/$', views.search, name='searchfound'),
+    url(r'^lost/(?P<oid>[0-9]+)/$', views.lostobject, name='lostobject'),
+    url(r'^found/(?P<oid>[0-9]+)/$', views.foundobject, name='foundobject'),
+    url(r'^lost/(?P<oid>[0-9]+)/edit/$', views.editLost, name='editLost'),
+    url(r'^found/(?P<oid>[0-9]+)/edit/$', views.editFound, name='editFound'),
+    url(r'^found/(?P<oid>[0-9]+)/delete/$', views.deleteFound, name='deleteFound'),
+    url(r'^lost/(?P<oid>[0-9]+)/delete/$', views.deleteLost, name='deleteLost'),
+    url(r'^found/(?P<oid>[0-9]+)/email/$', views.emailFound, name='emailFound'),
+    url(r'^lost/(?P<oid>[0-9]+)/email/$', views.emailLost, name='emailLost'),
+    url(r'^lost/$', views.lost, name='lost'),
+    url(r'^found/$', views.found, name='found'),
+    url(r'^images/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT,}),
+    url(r'^.*logout/$', views.logout, name='logout'),
+    url(r'^.*error/$', views.error, name='error'),
+    url(r'^profile/$', views.profile, name='profile'),
+    #url(r'^default.jpg$', views.defaultimage, name='foundobject'),
+)

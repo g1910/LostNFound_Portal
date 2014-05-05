@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Have U Found Something ?</title>
+</head>
+<body>
+	<form action="." method="post" id="foundform" enctype="multipart/form-data">
+		{% csrf_token %}
+		<label class="required" for="id_itemName">ItemName:</label>
+		<input class="vTextField" id="id_itemName" maxlength="128" name="itemName" type="text" value='{{ object.itemName }}'/><br>
+		<input {% if object.anonymity %} checked='checked' {% endif %} id="id_anonymity" name="anonymity" type="checkbox" /><label class="vCheckboxLabel" for="id_anonymity">Anonymity</label><br>
+		<label class="required" for="id_category">Category:</label>
+		<select id="id_category" name="category">
+			{% for category in categories %}
+			{% if category == object.category %}
+			<option selected='selected' value="{{category.category}}" >{{ category.category }}</option>
+			{% else %}
+			<option value="{{category.category}}" >{{ category.category }}</option>
+			{% endif %}
+			{% endfor %}
+		</select><a href="/admin/LostNFound/categories/add/" class="add-another" id="add_id_category" onclick="return showAddAnotherPopup(this);"> <img src="/static/admin/img/icon_addlink.gif" width="10" height="10" alt="Add Another"/></a><br>
+		<label for="id_desc">Desc:</label>
+		<input class="vTextField" id="id_desc" maxlength="128" name="desc" type="text" value='{{ object.desc }}' /><br>
+		<label for="id_image">Image:</label>
+		<input id="id_image" name="image" type="file" /><br>
+		<label class="required" for="id_location">Location:</label>
+		<input class="vTextField" id="id_location" maxlength="128" name="location" type="text" value='{{ object.location }}'/><br>
+		<input type='hidden' name='oid' value='{{ object.id }}'>
+		<label for="id_tag">Tag:</label>
+		<select multiple="multiple" id="id_tag" name="tag">
+			{% for tag in tags %}
+			{% if tag in object.tag.all %}
+				<option selected='selected' value="{{tag.tag}}" >{{ tag.tag }}</option>
+				{% else %}
+				<option value="{{tag.tag}}" >{{ tag.tag }}</option>
+				{% endif %}
+			{% endfor %}
+		</select><a href="/admin/LostNFound/tags/add/" class="add-another" id="add_id_tag" onclick="return showAddAnotherPopup(this);"> <img src="/static/admin/img/icon_addlink.gif" width="10" height="10" alt="Add Another"/></a><br>
+		<input type="submit" value="Save" class="default" name="_save" />
+	</form>
+</body>
+</html>

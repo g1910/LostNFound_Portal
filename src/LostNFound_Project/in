@@ -1,0 +1,10 @@
+from LostNFound.models import Tags, Categories, UserDetails, User, Lost, Found
+
+u = User(email='rahulm@iitrpr.ac.in',isRegistered=True)
+u.save()
+ud = UserDetails(name='Rahul', address='home')
+ud.save()
+u.userdetails(ud)
+u.save()
+
+gfgsreqt

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Found-Item Details</title>
+	<script src="../js/jquery-1-9-1.min.js"></script>
+	<script src="../js/jquery-validate.js"></script>
+	<script src="../js/additional-methods.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/form.css">
+	<script>
+		function showDiv()
+		{
+			var div = document.getElementById("new_insert_div");
+			div.style.display='block';
+			div.style.visibility='visible';
+		}
+		function addTag()
+		{
+			var mySelect = document.getElementById("tags");
+			var newtag = document.getElementById("newtag");
+			var option = document.createElement("option");
+			option.text = newtag.value;
+			option.value = newtag.value;
+
+			var exists = false;
+			for(var i = 0, opts = mySelect.options; i < opts.length; ++i)
+			   if( opts[i].value === newtag.value)
+			   {
+			      exists = true;
+			      document.getElementById("insert_status").innerHTML = "Tag already exists!";
+			      opts[i].selected = 'selected' ;
+			      break;
+			   }
+
+			if(!exists && newtag.value != '')
+			{
+				mySelect.add(option);
+				document.getElementById("insert_status").innerHTML = "Tag inserted";
+				for(var i = 0, opts = mySelect.options; i < opts.length; ++i)
+				   if( opts[i].value === newtag.value )
+				   {
+				      opts[i].selected = 'selected' ;
+				      break;
+				   }
+			}
+
+			newtag.value = "";
+		}
+
+		$(document).ready( function() {
+		    var now = new Date();
+		    var month = (now.getMonth() + 1);               
+		    var day = now.getDate();
+		    if(month < 10) 
+		        month = "0" + month;
+		    if(day < 10) 
+		        day = "0" + day;
+		    var today = now.getFullYear() + '-' + month + '-' + day;
+		    $('#date').val(today);
+		});
+
+	</script>
+</head>
+
+<body>
+	<div class="header_div">
+		<div class="title_div">
+		<h1 align="center" class="title1">LOST and FOUND portal</h1>
+		<h2 align = "center" class="title">Enter the details of the Found item</h2>
+		</div>
+			<div class="nav_menu">
+		<section class="welcome">Welcome, <p id="get_name" style="display:inline">test name</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</section>
+		<p align=right>
+			<a href="home.html" target="_self"><button class="menu_button">Home </button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="myprofile.html" target="_self"><button class="menu_button">My Profile </button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="index.html" target="_self"><button class="menu_button">Logout</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</p>
+		</div>
+	</div>
+
+	<div class="main_div">
+
+	<p  align=center id="message">test message</p>
+
+	<div class="form_div">
+	<!--<div class="box">-->
+
+		<form name="foundform" id="foundform" action="home.html" method="POST">
+
+			<table width=50% align=center>
+				<tr>
+					<td width=20% align=right><label for="category"> Category <big>*</big> :</label></td>
+					<td> 
+						<select id="category" name="category">
+							<option selected disabled hidden value=''></option>
+							<option value="jewellery">Jewellery / Valueable</option>
+							<option value="sports">Sports Equipment</option>
+							<option value="notebook">Note-book/Library book</option>
+							<option value="personal">Personal belonging</option>
+							<option value="other">Other</option>
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td width=20% align=right><label for="itemname">Item Name <big>*</big> :</label></td>
+					<td> <input class="txtbx" type="text" id="itemname" name="itemname"  maxlength="128"></td>
+				</tr>
+				<br>
+
+				<tr>
+					<td width=20% align=right><label for="place">Place Found <big>*</big> :</label></td>
+					<td> <input  class="txtbx" type="text" id="place" name="place" maxlength="128"> </td>
+				</tr>
+
+				<tr>
+					<td width=20% align=right><label for="date"> Date Found <big>*</big> :</label></td>
+					<td><input  class="txtbx" type="date" id="date" name="date"> </td>
+				</tr>
+
+
+				<tr>
+					<td align=right><label for="tags">Tags :</label></td>
+					<td>
+					<select id="tags" name="tags" class="txtbx" multiple>
+					  <option value="tag1">tag1</option>
+					  <option value="tag2">tag2</option>
+					  <option value="tag3">tag3</option>
+					  <option value="tag4">tag4</option>
+					</select>
+						<div id="" >
+							<input type="button" class="form_button" value="Add custom tag" onclick="javascript: showDiv();"/>
+							<div id="new_insert_div" style="display:block;visibility:hidden;" >
+								<input class="txtbx" type = "text" id = "newtag" maxlength="16" />
+								<input type="button" class="form_button" value="Insert tag" onclick="javascript: addTag();"/>
+								<p id="insert_status" style="display:inline"></p>
+							</div>
+						</div>
+					</td>
+				</tr>
+
+				<br>
+
+				<tr>
+					<td width=20% align=right><label for="decs">Description :</label></td>
+					<td><textarea  class="txtbx"  name="desc" id="desc" maxlength="2048"></textarea> </td>
+				</tr>
+
+				<tr>
+					<td width=20% align=right><label for="image">Image :</label></td>
+					<td><input  class="txtbx" type="file" id="image" name="image" accept="image/*"> </td>
+				</tr>
+
+			</table>
+
+			<center><input type="submit" class="submit" name="submit" value="SUBMIT"></center>
+
+		</form>
+		<p align=center>Fields marked with * are mandatory.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+
+	</div>
+
+
+	<script>				//Don't be oversmart and cut-paste this to the head section!
+	jQuery.validator.setDefaults({
+	  success: "valid"
+	});
+
+	$( "#foundform" ).validate({
+		rules: {
+			itemname:{required:true},
+			place: {required:true},
+			date: {required:true},
+			category: {required: true}
+		},
+		messages: {
+			itemname: "Please enter your name",
+			place: "Please enter your address",
+			date: "Please enter date in mm-dd-yyyy format",
+			category: "Please choose a category"
+	        }
+	});
+
+	</script>
+
+	</div>
+	
+	<div class="footer_div">
+	<center>Created and maintained by : Rahul Mittal, Kaushal Yagnik, Deepak Chawla, Gaurav Mittal, Riya Garg </center>
+	</div>
+
+
+
+</body>
+
+</html>
+

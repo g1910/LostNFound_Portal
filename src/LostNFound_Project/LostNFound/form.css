@@ -1,0 +1,332 @@
+.txtbx {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+	background-color: #DDDDDD;
+	line-height: normal;
+	font-size: 17px;
+}
+
+body,td,th {
+	color: #000099;
+	font-weight:bold;
+	margin: 0px;
+}
+
+body {
+	background-color:#DBE7F6;
+	background-repeat:repeat;
+	background-attachment:fixed;
+	background-position: center;
+	background-size: cover;
+	margin:auto;
+	text-align: left;
+}
+
+.title h2 {
+
+}
+
+.title h1 {
+	font-size: 28pt;
+//	height: 40px;
+    
+
+}
+
+.welcome {
+
+	font-family: Calibri, sans-serif;
+    color: #000099;
+	text-align: right;
+	font-size: 18pt;
+	font-weight:bold;
+	margin-right:6%;
+}
+
+.header_div {
+
+	font-family: Calibri, sans-serif;
+    background-color:#0099cc;
+	display: block;
+	overflow: auto;
+	box-shadow:5px 5px 6px 8px #ccc;
+}
+
+.title_div {
+	margin-left: 36%;
+	float:left;
+	display: inline;
+	color: #000099;
+	//text-shadow: 5px 5px #00ccff;
+}
+
+.nav_menu {
+	margin-top: 20px;
+	float: right;
+}
+
+.main_div {
+	margin-top: 3%;
+}
+
+.footer_div {
+	font-family: Calibri, sans-serif;
+	position: fixed;
+    bottom: 0;
+	height:4%;
+    width: 100%;
+	color: #000099;
+	font-weight:bold;
+	padding-top:1%;
+	background-color:#0099cc;
+    margin-bottom: 0px;
+}
+
+/*
+
+.submit {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 18pt;
+	font-style: normal;
+	font-weight: bold;
+	background-color: #007;
+	color: #FFF;
+}
+
+*/
+.submit,.home_button{
+
+    font-family: Calibri, sans-serif;
+	width:170px;
+	height:40px;
+	background:#B9DFFF;
+	color: #000099;
+	font-weight:bold;
+	border: 1px solid #eee;
+//	border-radius: 20px;
+//	box-shadow: 5px 5px 5px #eee;
+
+}
+
+.submit:hover,.home_button:hover{
+    
+	font-family: Calibri, sans-serif;
+	width:170px;
+	height:40px;
+	background:#016ABC;
+	color: #fff;
+	font-weight:bold;
+	border: 1px solid #eee;
+//	border-radius: 20px;
+//	box-shadow: 5px 5px 5px #eee;
+
+}
+
+
+
+
+
+/*
+.form_button {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 10pt;
+	font-style: normal;
+	font-weight: bold;
+	background-color: #DCB;
+	color: #FFF;
+}
+*/
+
+.form_button {
+	font-family: Calibri, sans-serif;
+	font-weight:bold;
+    position: relative;
+    overflow: visible;
+    display: inline-block;
+    padding: 0.5em 1em;
+    border: 1px solid #d4d4d4;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 1px 1px 0 #fff;
+    font:11px/normal sans-serif;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    background-color: #ececec;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+    background-image: -ms-linear-gradient(#f4f4f4, #ececec);
+    background-image: -o-linear-gradient(#f4f4f4, #ececec);
+    background-image: linear-gradient(#f4f4f4, #ececec);
+    -moz-background-clip: padding; /* for Firefox 3.6 */
+    background-clip: padding-box;
+    border-radius: 0.2em;
+    /* IE hacks */
+    zoom: 1;
+    *display: inline;
+}
+
+.form_button:hover{
+
+	font-family: Calibri, sans-serif;
+    border-color: #3072b3;
+    border-bottom-color: #2a65a0;
+    text-decoration: none;
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+    color: #fff;
+    background-color: #3c8dde;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+    background-image: -moz-linear-gradient(#599bdc, #3072b3);
+    background-image: -o-linear-gradient(#599bdc, #3072b3);
+    background-image: linear-gradient(#599bdc, #3072b3);
+}
+
+
+
+.home_button {
+
+
+}
+
+/*
+.menu_button {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16pt;
+	font-style: normal;
+	font-weight: bold;
+	background-color: #49A;
+	color: #FFF;
+}
+*/
+
+.menu_button {
+
+	font-family: Calibri, sans-serif;
+	background-color:#000099;
+//	-moz-border-radius:28px;
+//	-webkit-border-radius:28px;
+//	border-radius:28px;
+	border:1px solid #0066CC;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:13px;
+	padding:7px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.menu_button:hover {
+	font-family: Calibri, sans-serif;
+	background-color:#000066;
+}
+.menu_button:active {
+	position:relative;
+	top:1px;
+}
+
+.bigdiv {
+	position: relative;
+	overflow-x: hidden;
+	width: 95%;
+	height: 95%;
+}
+
+.imgdiv {
+//	background: #c35862;
+	position: relative;
+	float: left;
+	margin-left: 10px;
+	width: 40%;
+	height: 47%;
+	style.display:inline;
+}
+
+.detaildiv {
+//	background: #837174;
+	style.display:inline;
+	width: 57%;
+	height: 47%;
+	float: right;
+	margin-right: 10px;
+}
+
+.form_div {
+	padding-top:20px;
+    margin-bottom:75px;
+	border-radius: 50px;
+	background-color:#ffffff;
+	margin-left :30%;
+	margin-right:30%;
+	box-shadow:5px 5px 10px 12px #ccc;
+}
+
+
+
+.detaildiv table {
+	font-size: 18pt;
+}
+.detaildiv tr {
+	height: 35px;
+}
+
+.tableicon {
+	height: 130px;
+}
+
+.item_table table {
+
+	
+    border-collapse:collapse;
+	border:3px solid #000066;
+	border-radius:50px;
+	color:#000099;
+	border: 3;
+}
+
+.item_table th {
+	background: #00CED1;
+	color:#000099;
+	border:3px solid #000066;
+	font-size: 18pt;
+}
+
+.item_table td {
+	font-size: 16pt;
+	border:3px solid #000066;
+	font-weight:normal;
+	color:#000099;
+}
+
+.box {
+	padding: 5px;
+	width:40%;
+	box-shadow:0px 0px 20px 1px Black;
+	border-radius: 7px;
+	float:left;
+	margin:auto;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	background-color: #935F52;
+}
+
+
+#field { margin-left: .5em; float: left; }
+#field, label { float: none; font-family: Arial, Helvetica, sans-serif; font-size: small; }
+br { clear: both; }
+input.error { border: 1px solid red; }
+label.error {
+	background: url('../images/unchecked.gif') no-repeat;
+	padding-left: 16px;
+	margin-left: .3em;
+	width: 16px;
+	height: 16px;
+}
+label.valid {
+	background: url('../images/checked.gif') no-repeat;
+	padding-left: 16px;
+	margin-left: .3em;
+	width: 16px;
+	height: 16px;
+}

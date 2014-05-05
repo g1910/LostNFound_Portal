@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Filter Items</title>
+	<meta charset="utf-8">
+	<script src="{{STATIC_URL}}js/jquery-1-9-1.min.js"></script>
+	<script src="{{STATIC_URL}}js/jquery-validate.js"></script>
+	<script src="{{STATIC_URL}}js/additional-methods.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/form.css">
+	<script>
+		function showDiv_table()
+		{
+			var div = document.getElementById("item_table_div");
+			div.style.display='block';
+			div.style.visibility='visible';
+		}
+
+		function undoHide()
+		{
+			var div = document.getElementById("item_table_div");
+			div.style.display='none';
+			div.style.visibility='hidden';
+		}
+
+	</script>
+</head>
+
+<body>
+	<div class="header_div">
+		<div class="title_div">
+			<h1 align="center">LOST and FOUND portal</h1>
+			<h2 align="center">Browse items</h2>
+		</div>
+
+		<div class="nav_menu">
+			<section class="welcome">Welcome, {{ username }}</section>
+			<p align=right>
+				<a href="../../" target="_self"><button class="menu_button">Home </button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="../../profile/" target="_self"><button class="menu_button">My Profile </button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="logout/" target="_self"><button class="menu_button">Logout</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+			</p>
+		</div>
+	</div>
+
+	<div class="main_div">
+
+	<p  align=center id="message" style="display:none;visibility:hidden">{{msg}}</p>
+
+	<center>
+			<form method="get" action="." id="filter" name="filter">
+			Search Query: <input type='text' class="txtbx" name='searchquery' id='searchquery'>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			Category:
+			<select id="category" name="category" class="txtbx">
+				<option selected value="all">All</option>
+				{% for category in categories %}
+				<option value="{{category.category}}" >{{ category.category }}</option>
+				{% endfor %}
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			Relevance :
+			<select id="order" name="order" class="txtbx">
+				<option value="relevance" selected="selected">Relevance</option>
+				<option value="latest" >latest</option>
+				<option value="name" >name</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="submit" class="submit" value="Filter" name="filter_submit" id="filter_submit" />
+		</form>
+		<br>
+	</center>
+	
+	{% if object %}
+	<div class="item_table" id="item_table_div" name="item_table_div">
+	<table width=95% align=center border=1>
+		
+		<tr height=50 align=center>
+			<th width=30%>Item Name</th>
+			<th width=30%>Category</th>
+			<th width=40%>Description</th>
+		</tr>
+		{% for result in object %}
+		<tr height=45 align=center>
+			<td width=30%><a href=../../{{ type }}/{{result.oid}}/>{{ result.title }}</a></td>
+			<td width=30%>{{ result.category }}</td>
+			<td width=40%>{{ result.desc }}</td>
+		</tr>
+		{% endfor %}
+  	{% endif %}
+		
+
+	</table>
+	</div>
+	<br><br>
+	</div>
+
+	<div class="footer_div">
+	<center>Created and maintained by : Rahul Mittal, Kaushal Yagnik, Deepak Chawla, Gaurav Mittal, Riya Garg </center>
+	</div>
+
+<br><br><br>
+</body>
+
+</html>

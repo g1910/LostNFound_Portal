@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Home</title>
+<meta charset="utf-8">
+<script src="{{ STATIC_URL }}js/jquery-1-9-1.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery-validate.js"></script>
+<script src="{{ STATIC_URL }}js/additional-methods.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/form.css">
+
+</head>
+
+<body>
+
+<h1 align = "center" class="title">LOST and FOUND portal</h1>
+
+<section class="welcome">Welcome, <p id="get_name" style="display:inline">test name</p></section>
+<p align=right>
+	<a href="profile/" target="_self"><button class="menu_button">My Profile </button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="logout/" target="_self"><button class="menu_button">Logout</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+
+<p  align=center id="message">test message</p>
+<!--
+<table width=100% align=center>
+	<tr align=center>
+		<td><a href="index.html" target="_self"><button>Logout</button></a></td>
+		<td><a href="myprofile.html" target="_self"><button>Edit My Profile </button></a></td>
+	</tr>
+
+</table>
+-->
+<br><br><br><br><br>
+
+<table width=100%>
+	<tr align=center>
+		<td><a href="lost/" target="_self"><button class="menu_button">My Lost Items...</button> </a></td>
+		<td><a href="lost_something/" target="_self"><button class="menu_button">I have LOST Something...</button> </a></td>
+		<td><a href="search/lost" target="_self"><button class="menu_button">BROWSE ALL LOST...</button> </a></td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr align=center>
+		<td><a href="found/" target="_self"><button class="menu_button">My Found Items...</button> </a></td>
+		<td><a href="found_something" target="_self"><button class="menu_button">I have FOUND Something...</button> </a></td>
+		<td><a href="search/found" target="_self"><button class="menu_button">BROWSE ALL FOUND...</button> </a></td>
+	</tr>
+
+</table>
+	
+	<br>
+	<br>
+	
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Filter Items</title>
+	<meta charset="utf-8">
+	<script src="../js/jquery-1-9-1.min.js"></script>
+	<script src="../js/jquery-validate.js"></script>
+	<script src="../js/additional-methods.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/form.css">
+	<script>
+		function showDiv_table()
+		{
+			var div = document.getElementById("item_table_div");
+			div.style.display='block';
+			div.style.visibility='visible';
+		}
+
+		function undoHide()
+		{
+			var div = document.getElementById("item_table_div");
+			div.style.display='none';
+			div.style.visibility='hidden';
+		}
+
+	</script>
+</head>
+
+<body>
+	<div class="header_div">
+		<div class="title_div">
+			<h1 align="center">LOST and FOUND portal</h1>
+			<h2 align="center">Browse items</h2>
+		</div>
+
+		<div class="nav_menu">
+			<section class="welcome">Welcome, <p id="get_name" style="display:inline;">test name</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</section>
+			<p align=right>
+				<a href="home.html" target="_self"><button class="menu_button">Home </button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="myprofile.html" target="_self"><button class="menu_button">My Profile </button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="index.html" target="_self"><button class="menu_button">Logout</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</p>
+		</div>
+	</div>
+
+	<div class="main_div">
+
+	<p  align=center id="message" style="display:none;visibility:hidden">test message</p>
+
+	<center>
+			<form method="post" action="browseall.html" id="filter" name="filter">
+			<label for="category"> Category <big>*</big> :</label>
+			<select id="category" name="category" class="txtbx">
+				<option selected value="all">All</option>
+				<option value="jewellery">Jewellery / Valueable</option>
+				<option value="sports">Sports Equipment</option>
+				<option value="notebook">Note-book/Library book</option>
+				<option value="personal">Personal belonging</option>
+				<option value="other">Other</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			Relevance :
+			<select id="relevance" name="relevance" class="txtbx">
+				<option selected value="all">All</option>
+				<option value="mostrelevant">Most Relevant</option>
+				<option value="Latest">Latest</option>
+				<option value="name">Name</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="submit" class="submit" value="Filter" name="filter_submit" id="filter_submit" />
+		</form>
+	</center>
+
+	<div class="item_table" id="item_table_div" name="item_table_div">
+	<table width=95% align=center border=1>
+		
+		<tr height=50 align=center>
+			<th width=18%>Image</th>
+			<th width=15%>Item Name</th>
+			<th width=15%>Person who listed</th>
+			<th width=10%>Category</th>
+			<th width=10%>Place lost/found</th>
+			<th width=10%>Date lost/found</th>
+			<th width=10%>Tags</th>
+		</tr>
+
+		<tr height=140  align=center>
+			<td width=18%><div class="tableicon"><img src="../images/4.jpg" height=100% /></div></td>
+			<td width=15%> Item Name</td>
+			<td width=20%> Lost/Found by</td>
+			<td width=10%>Category</td>
+			<td width=17%>Place lost/found</td>
+			<td width=10%> Date lost/found</td>
+			<td width=10%>Tags</td>
+		</tr>
+
+	</table>
+	</div>
+
+	</div>
+
+	<div class="footer_div">
+	<center>Created and maintained by : Rahul Mittal, Kaushal Yagnik, Deepak Chawla, Gaurav Mittal, Riya Garg </center>
+	</div>
+
+
+</body>
+
+</html>
